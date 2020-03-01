@@ -1,7 +1,6 @@
-﻿using FileManager.Common.Layer;
-using FileManager.DataAccess.Data;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.Windows.Forms;
+
 
 
 namespace FileManager.Presentation.WinSite
@@ -14,8 +13,9 @@ namespace FileManager.Presentation.WinSite
         [STAThread]
         static void Main()
         {
-            IStudentDao jsonList = new JsonStudentDao();
-            var j = jsonList.GetAll();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new frmMain());
         }
     }
 }
