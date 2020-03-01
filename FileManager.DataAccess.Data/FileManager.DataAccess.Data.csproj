@@ -44,9 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JsonGenerator.cs" />
+    <Compile Include="JsonStudentDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IStudentRepository.cs" />
+    <Compile Include="IStudentDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FileManager.Common.Layer\FileManager.Common.Layer.csproj">
