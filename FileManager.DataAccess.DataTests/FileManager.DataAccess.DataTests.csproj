@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="JsonStudentDaoTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XmlStudentDaoTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
