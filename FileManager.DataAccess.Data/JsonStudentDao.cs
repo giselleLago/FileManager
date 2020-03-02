@@ -25,7 +25,6 @@ namespace FileManager.DataAccess.Data
         public Student Create(Student student)
         {
             var studentList = GetAll();
-            student.Id = Guid.NewGuid().ToString();
             studentList.Add(student);
             var json = JsonConvert.SerializeObject(studentList);
             File.WriteAllText(FileName, json);

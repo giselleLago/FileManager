@@ -72,7 +72,7 @@ namespace FileManager.DataAccess.Data.Tests
             File.WriteAllText(FileName, json);
             var student = new Student
             {
-                Id = "1",
+                Id = 1,
                 Name = "Max",
                 LastName = "Perez",
                 Age = 21
@@ -91,7 +91,7 @@ namespace FileManager.DataAccess.Data.Tests
             File.WriteAllText(FileName, json);
             var student = new Student
             {
-                Id = "1"
+                Id = 1
             };
             var jsonStudentDao = new JsonStudentDao();
             jsonStudentDao.Delete(student);

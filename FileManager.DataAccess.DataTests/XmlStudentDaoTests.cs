@@ -25,11 +25,11 @@ namespace FileManager.DataAccess.Data.Tests
         [TestMethod()]
         public void GetAll_GivenOneStudentInFile_ShouldReturnAListWithOneElement()
         {
-            var xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?><ArrayOfStudent xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">  <Student>    <Id>1</Id>    <Name>Peter</Name>    <LastName>Parker</LastName>    <Age>22</Age>  </Student></ArrayOfStudent>";
+            var xml = "<?xml version=\"1.0\" encoding=\"utf-8\"?><ArrayOfStudent xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">  <Student>    <Id>1</Id>    <Name>Peter</Name>    <LastName>Parker</LastName>    <Age>22</Age>  </Student><Student>    <Id>1</Id>    <Name>Peter</Name>    <LastName>Parker</LastName>    <Age>22</Age>  </Student></ArrayOfStudent>";
             File.WriteAllText(FileName, xml);
             var xmlStudentDao = new XmlStudentDao();
             var list = xmlStudentDao.GetAll();
-            Assert.AreEqual(1, list.Count);
+            Assert.AreEqual(2, list.Count);
         }
 
         [TestMethod()]
@@ -58,7 +58,7 @@ namespace FileManager.DataAccess.Data.Tests
             File.WriteAllText(FileName, xml);
             var student = new Student
             {
-                Id = "1"
+                Id = 1
             };
             var xmlStudentDao = new XmlStudentDao();
             xmlStudentDao.Delete(student);
