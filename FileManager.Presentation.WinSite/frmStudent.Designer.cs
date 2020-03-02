@@ -31,38 +31,31 @@ namespace FileManager.Presentation.WinSite
         private void InitializeComponent()
         {
             this.saveButton = new System.Windows.Forms.Button();
-            this.comboBoxFile = new System.Windows.Forms.ComboBox();
             this.studentID = new System.Windows.Forms.Label();
             this.name = new System.Windows.Forms.Label();
             this.lastName = new System.Windows.Forms.Label();
             this.age = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.txtLastName = new System.Windows.Forms.TextBox();
+            this.txtAge = new System.Windows.Forms.TextBox();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(467, 263);
+            this.saveButton.Location = new System.Drawing.Point(134, 131);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 0;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
-            // 
-            // comboBoxFile
-            // 
-            this.comboBoxFile.FormattingEnabled = true;
-            this.comboBoxFile.Location = new System.Drawing.Point(431, 45);
-            this.comboBoxFile.Name = "comboBoxFile";
-            this.comboBoxFile.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxFile.TabIndex = 1;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // studentID
             // 
             this.studentID.AutoSize = true;
-            this.studentID.Location = new System.Drawing.Point(88, 53);
+            this.studentID.Location = new System.Drawing.Point(12, 9);
             this.studentID.Name = "studentID";
             this.studentID.Size = new System.Drawing.Size(21, 13);
             this.studentID.TabIndex = 2;
@@ -71,7 +64,7 @@ namespace FileManager.Presentation.WinSite
             // name
             // 
             this.name.AutoSize = true;
-            this.name.Location = new System.Drawing.Point(71, 98);
+            this.name.Location = new System.Drawing.Point(12, 38);
             this.name.Name = "name";
             this.name.Size = new System.Drawing.Size(38, 13);
             this.name.TabIndex = 3;
@@ -80,7 +73,7 @@ namespace FileManager.Presentation.WinSite
             // lastName
             // 
             this.lastName.AutoSize = true;
-            this.lastName.Location = new System.Drawing.Point(48, 145);
+            this.lastName.Location = new System.Drawing.Point(12, 65);
             this.lastName.Name = "lastName";
             this.lastName.Size = new System.Drawing.Size(61, 13);
             this.lastName.TabIndex = 4;
@@ -89,58 +82,71 @@ namespace FileManager.Presentation.WinSite
             // age
             // 
             this.age.AutoSize = true;
-            this.age.Location = new System.Drawing.Point(80, 195);
+            this.age.Location = new System.Drawing.Point(12, 89);
             this.age.Name = "age";
             this.age.Size = new System.Drawing.Size(29, 13);
             this.age.TabIndex = 5;
             this.age.Text = "Age:";
             // 
-            // textBox1
+            // txtId
             // 
-            this.textBox1.Location = new System.Drawing.Point(156, 46);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(130, 20);
-            this.textBox1.TabIndex = 6;
-            //this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtId.Location = new System.Drawing.Point(89, 6);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(201, 20);
+            this.txtId.TabIndex = 6;
             // 
-            // textBox2
+            // txtName
             // 
-            this.textBox2.Location = new System.Drawing.Point(156, 91);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(130, 20);
-            this.textBox2.TabIndex = 7;
+            this.txtName.Location = new System.Drawing.Point(89, 35);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(201, 20);
+            this.txtName.TabIndex = 7;
             // 
-            // textBox3
+            // txtLastName
             // 
-            this.textBox3.Location = new System.Drawing.Point(156, 142);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(130, 20);
-            this.textBox3.TabIndex = 8;
+            this.txtLastName.Location = new System.Drawing.Point(89, 62);
+            this.txtLastName.Name = "txtLastName";
+            this.txtLastName.Size = new System.Drawing.Size(201, 20);
+            this.txtLastName.TabIndex = 8;
             // 
-            // textBox4
+            // txtAge
             // 
-            this.textBox4.Location = new System.Drawing.Point(156, 188);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(130, 20);
-            this.textBox4.TabIndex = 9;
+            this.txtAge.Location = new System.Drawing.Point(89, 89);
+            this.txtAge.Name = "txtAge";
+            this.txtAge.Size = new System.Drawing.Size(201, 20);
+            this.txtAge.TabIndex = 9;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(215, 131);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 10;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // frmStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 373);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(302, 157);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.txtAge);
+            this.Controls.Add(this.txtLastName);
+            this.Controls.Add(this.txtName);
+            this.Controls.Add(this.txtId);
             this.Controls.Add(this.age);
             this.Controls.Add(this.lastName);
             this.Controls.Add(this.name);
             this.Controls.Add(this.studentID);
-            this.Controls.Add(this.comboBoxFile);
             this.Controls.Add(this.saveButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmStudent";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Student";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -150,15 +156,15 @@ namespace FileManager.Presentation.WinSite
         #endregion
 
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.ComboBox comboBoxFile;
         private System.Windows.Forms.Label studentID;
         private System.Windows.Forms.Label name;
         private System.Windows.Forms.Label lastName;
         private System.Windows.Forms.Label age;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.TextBox txtLastName;
+        private System.Windows.Forms.TextBox txtAge;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
 
