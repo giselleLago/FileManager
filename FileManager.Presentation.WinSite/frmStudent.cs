@@ -1,5 +1,6 @@
 ﻿using FileManager.Common.Layer;
 using FileManager.DataAccess.Data;
+using log4net;
 using System;
 using System.Windows.Forms;
 
@@ -9,6 +10,7 @@ namespace FileManager.Presentation.WinSite
     {
         private readonly IStudentDao studentDao;
         private readonly frmMain frmMain;
+        private static readonly ILog logger = LogManager.GetLogger(typeof(frmStudent));
         public frmStudent(IStudentDao studentDao, frmMain frmMain)
         {
             InitializeComponent();
@@ -25,20 +27,28 @@ namespace FileManager.Presentation.WinSite
         {
             if (ValidateAll())
             {
-                var newStudent = new Student();
-                newStudent.Id = int.Parse(txtId.Text);
-                newStudent.Name = txtName.Text;
-                newStudent.LastName = txtLastName.Text;
-                newStudent.Age = int.Parse(txtAge.Text);
-                studentDao.Create(newStudent);
-                frmMain.RefreshStudentList();
-                Close();
+                try
+                {
+                    var newStudent = new Student();
+                    newStudent.Id = int.Parse(txtId.Text);
+                    newStudent.Name = txtName.Text;
+                    newStudent.LastName = txtLastName.Text;
+                    newStudent.Age = int.Parse(txtAge.Text);
+                    studentDao.Create(newStudent);
+                    frmMain.RefreshStudentList();
+                    Close();
+                }
+                catch (Exception ex)
+                {
+                    logger.Error("An error has occurred creating the student.", ex);
+                    MessageBox.Show("An error has occurred creating the student.");
+                }
+                
             }
             else
             {
                 MessageBox.Show("Student not valid");
             }
-            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

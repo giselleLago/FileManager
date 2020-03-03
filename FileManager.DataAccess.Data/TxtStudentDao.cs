@@ -1,12 +1,14 @@
 ﻿using FileManager.Common.Layer;
+using log4net;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
 namespace FileManager.DataAccess.Data
 {
-    public class TxtStudentDao
+    public class TxtStudentDao : IStudentDao
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(TxtStudentDao));
         private const string FileName = "students.txt";
         public List<Student> GetAll()
         {
@@ -14,7 +16,7 @@ namespace FileManager.DataAccess.Data
             {
                 return DeserializeObject();
             }
-
+            logger.Info("The file dosen't exist. Return empty list.");
             return new List<Student>();
         }
 
@@ -32,6 +34,7 @@ namespace FileManager.DataAccess.Data
             var student = studentList.FirstOrDefault(x => x.Id == studentUpdate.Id);
             if (student == null)
             {
+                logger.Warn("Student not found.");
                 throw new StudentNotFoundException();
             }
             student.Name = studentUpdate.Name;
@@ -47,6 +50,7 @@ namespace FileManager.DataAccess.Data
             var student = studentList.FirstOrDefault(x => x.Id == studentDelete.Id);
             if (student == null)
             {
+                logger.Warn("Student not found.");
                 throw new StudentNotFoundException();
             }
             studentList.Remove(student);

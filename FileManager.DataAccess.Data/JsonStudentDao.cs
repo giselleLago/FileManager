@@ -1,4 +1,5 @@
 ﻿using FileManager.Common.Layer;
+using log4net;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ namespace FileManager.DataAccess.Data
 {
     public class JsonStudentDao : IStudentDao
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(JsonStudentDao));
         private const string FileName = "students.json";
         public List<Student> GetAll()
         {
@@ -18,7 +20,7 @@ namespace FileManager.DataAccess.Data
                 var studentList = JsonConvert.DeserializeObject<List<Student>>(readText);
                 return studentList;
             }
-
+            logger.Info("The file dosen't exist. Return empty list.");
             return new List<Student>();
         }
 
@@ -37,6 +39,7 @@ namespace FileManager.DataAccess.Data
             var student = studentList.FirstOrDefault(x => x.Id == studentUpdate.Id);
             if (student == null)
             {
+                logger.Warn("Student not found.");
                 throw new StudentNotFoundException();
             }
             student.Name = studentUpdate.Name;
@@ -53,6 +56,7 @@ namespace FileManager.DataAccess.Data
             var student = studentList.FirstOrDefault(x => x.Id == studentDelete.Id);
             if (student == null)
             {
+                logger.Warn("Student not found.");
                 throw new StudentNotFoundException();
             }
             studentList.Remove(student);

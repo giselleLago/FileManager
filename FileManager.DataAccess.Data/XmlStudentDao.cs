@@ -1,4 +1,5 @@
 ﻿using FileManager.Common.Layer;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +10,7 @@ namespace FileManager.DataAccess.Data
 {
     public class XmlStudentDao : IStudentDao
     {
-        
+        private static readonly ILog logger = LogManager.GetLogger(typeof(XmlStudentDao));
         private const string FileName = "students.xml";
         public List<Student> GetAll()
         {
@@ -18,7 +19,8 @@ namespace FileManager.DataAccess.Data
                 return DeserializeObject();
             }
 
-            return new List<Student>();
+            logger.Info("The file dosen't exist. Return empty list.");
+            return new List<Student>();  
         }
 
         public Student Create(Student student)
@@ -35,6 +37,7 @@ namespace FileManager.DataAccess.Data
             var student = studentList.FirstOrDefault(x => x.Id == studentUpdate.Id);
             if (student == null)
             {
+                logger.Warn("Student not found.");
                 throw new StudentNotFoundException();
             }
             student.Name = studentUpdate.Name;
@@ -50,6 +53,7 @@ namespace FileManager.DataAccess.Data
             var student = studentList.FirstOrDefault(x => x.Id == studentDelete.Id);
             if (student == null)
             {
+                logger.Warn("Student not found.");
                 throw new StudentNotFoundException();
             }
             studentList.Remove(student);

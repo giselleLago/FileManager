@@ -1,4 +1,5 @@
 ﻿using FileManager.DataAccess.Data;
+using log4net;
 using System;
 using System.Windows.Forms;
 
@@ -6,6 +7,7 @@ namespace FileManager.Presentation.WinSite
 {
     public partial class frmMain : Form
     {
+        private static readonly ILog logger = LogManager.GetLogger(typeof(frmMain));
         private IStudentDao studentDao;
 
         public frmMain()
@@ -33,15 +35,22 @@ namespace FileManager.Presentation.WinSite
 
         public void RefreshStudentList()
         {
-            var studentList = studentDao.GetAll();
-            lvwStudents.Items.Clear();
-            foreach (var item in studentList)
+            try
             {
-                string[] newItem = { item.Id.ToString(), item.Name, item.LastName, item.Age.ToString() };
-                var result = new ListViewItem(newItem);
-                lvwStudents.Items.Add(result);
+                var studentList = studentDao.GetAll();
+                lvwStudents.Items.Clear();
+                foreach (var item in studentList)
+                {
+                    string[] newItem = { item.Id.ToString(), item.Name, item.LastName, item.Age.ToString() };
+                    var result = new ListViewItem(newItem);
+                    lvwStudents.Items.Add(result);
+                }
             }
-            
+            catch (Exception ex)
+            {
+                logger.Error("An error has occurred listing the students.", ex);
+                MessageBox.Show("An error has occurred listing the students.");
+            }
         }
 
         private void btnNew_Click(object sender, EventArgs e)
