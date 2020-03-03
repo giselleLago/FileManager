@@ -23,19 +23,69 @@ namespace FileManager.Presentation.WinSite
 
         private void saveButton_Click(object sender, System.EventArgs e)
         {
-            var newStudent = new Student();
-            newStudent.Id = int.Parse(txtId.Text);
-            newStudent.Name = txtName.Text;
-            newStudent.LastName = txtLastName.Text;
-            newStudent.Age = int.Parse(txtAge.Text);
-            studentDao.Create(newStudent);
-            frmMain.RefreshStudentList();
-            Close();
+            if (ValidateAll())
+            {
+                var newStudent = new Student();
+                newStudent.Id = int.Parse(txtId.Text);
+                newStudent.Name = txtName.Text;
+                newStudent.LastName = txtLastName.Text;
+                newStudent.Age = int.Parse(txtAge.Text);
+                studentDao.Create(newStudent);
+                frmMain.RefreshStudentList();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Student not valid");
+            }
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private bool ValidateAll()
+        {
+            if (ValidateId() && ValidateName() && ValidateLastName() && ValidateAge())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool ValidateId()
+        {
+            if (string.IsNullOrEmpty(txtId.Text))
+            {
+                return false;
+            }
+            return true;
+        }
+        private bool ValidateName()
+        {
+            if (string.IsNullOrEmpty(txtName.Text))
+            {
+                return false;
+            }
+            return true;
+        }
+        private bool ValidateLastName()
+        {
+            if (string.IsNullOrEmpty(txtLastName.Text))
+            {
+                return false;
+            }
+            return true;
+        }
+        private bool ValidateAge()
+        {
+            if (string.IsNullOrEmpty(txtAge.Text))
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

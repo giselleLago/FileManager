@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.lvwStudents = new System.Windows.Forms.ListView();
-            this.cbxDataFormat = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnNew = new System.Windows.Forms.Button();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cbxDataFormat = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnNew = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lvwStudents
@@ -57,6 +57,26 @@
             this.lvwStudents.TabIndex = 0;
             this.lvwStudents.UseCompatibleStateImageBehavior = false;
             this.lvwStudents.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Id";
+            this.columnHeader1.Width = 173;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Name";
+            this.columnHeader2.Width = 215;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Last Name";
+            this.columnHeader3.Width = 260;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Age";
+            this.columnHeader4.Width = 132;
             // 
             // cbxDataFormat
             // 
@@ -91,25 +111,6 @@
             this.btnNew.Text = "New Student";
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Id";
-            this.columnHeader1.Width = 173;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Name";
-            this.columnHeader2.Width = 215;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Last Name";
-            this.columnHeader3.Width = 260;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Age";
             // 
             // frmMain
             // 
