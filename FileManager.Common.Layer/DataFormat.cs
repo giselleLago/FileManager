@@ -1,6 +1,6 @@
 ﻿
 
-namespace FileManager.DataAccess.Data.Services
+namespace FileManager.Common.Layer
 {
     public enum DataFormat
     {

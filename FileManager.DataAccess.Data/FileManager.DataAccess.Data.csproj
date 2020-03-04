@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\DataFormat.cs" />
     <Compile Include="Services\IAbstractFactory.cs" />
     <Compile Include="Services\JsonStudentDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

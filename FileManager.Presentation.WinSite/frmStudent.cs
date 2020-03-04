@@ -1,5 +1,6 @@
-﻿using FileManager.Common.Layer.Entities;
-using FileManager.DataAccess.Data.Services;
+﻿using FileManager.Business.DTOs;
+using FileManager.Business.Services;
+using FileManager.Common.Layer.Entities;
 using log4net;
 using System;
 using System.Windows.Forms;
@@ -8,13 +9,13 @@ namespace FileManager.Presentation.WinSite
 {
     public partial class frmStudent : Form
     {
-        private readonly IStudentDao studentDao;
+        private readonly IStudentService studentService;
         private readonly frmMain frmMain;
         private static readonly ILog logger = LogManager.GetLogger(typeof(frmStudent));
-        public frmStudent(IStudentDao studentDao, frmMain frmMain)
+        public frmStudent(IStudentService studentService, frmMain frmMain)
         {
             InitializeComponent();
-            this.studentDao = studentDao;
+            this.studentService = studentService;
             this.frmMain = frmMain;
         }
 
@@ -29,12 +30,12 @@ namespace FileManager.Presentation.WinSite
             {
                 try
                 {
-                    var newStudent = new Student();
+                    var newStudent = new StudentDto();
                     newStudent.Id = int.Parse(txtId.Text);
                     newStudent.Name = txtName.Text;
                     newStudent.LastName = txtLastName.Text;
                     newStudent.Age = int.Parse(txtAge.Text);
-                    studentDao.Create(newStudent);
+                    studentService.Create(newStudent);
                     frmMain.RefreshStudentList();
                     Close();
                 }

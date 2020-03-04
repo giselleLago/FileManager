@@ -1,4 +1,5 @@
-﻿using FileManager.DataAccess.Data.Services;
+﻿using FileManager.Business.Services;
+using FileManager.Common.Layer;
 using log4net;
 using System;
 using System.Windows.Forms;
@@ -8,7 +9,7 @@ namespace FileManager.Presentation.WinSite
     public partial class frmMain : Form
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof(frmMain));
-        private IStudentDao studentDao;
+        private IStudentService studentService;
 
         public frmMain()
         {
@@ -22,14 +23,13 @@ namespace FileManager.Presentation.WinSite
 
         private void cbxDataFormat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var studentDaoFactory = new StudentDaoFactory();
             if (cbxDataFormat.SelectedIndex == 0)
             {
-                studentDao = studentDaoFactory.Create(DataFormat.JSON);
+                studentService.DataFormat = DataFormat.JSON;
             }
             else
             {
-                studentDao = studentDaoFactory.Create(DataFormat.XML);
+                studentService.DataFormat = DataFormat.XML;
             }
             RefreshStudentList();
         }
@@ -38,7 +38,7 @@ namespace FileManager.Presentation.WinSite
         {
             try
             {
-                var studentList = studentDao.GetAll();
+                var studentList = studentService.GetAll();
                 lvwStudents.Items.Clear();
                 foreach (var item in studentList)
                 {
@@ -56,7 +56,7 @@ namespace FileManager.Presentation.WinSite
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            var studentForm = new frmStudent(studentDao, this);
+            var studentForm = new frmStudent(studentService, this);
             studentForm.ShowDialog();
         }
     }
