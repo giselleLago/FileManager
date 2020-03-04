@@ -3,6 +3,7 @@ using log4net;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 
@@ -11,7 +12,7 @@ namespace FileManager.DataAccess.Data
     public class JsonStudentDao : IStudentDao
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof(JsonStudentDao));
-        private const string FileName = "students.json";
+        private readonly string FileName = ConfigurationManager.AppSettings["json"].ToString();
         public List<Student> GetAll()
         {
             if (File.Exists(FileName))

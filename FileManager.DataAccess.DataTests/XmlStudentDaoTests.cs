@@ -1,14 +1,15 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using FileManager.Common.Layer;
+using System.Configuration;
 
 namespace FileManager.DataAccess.Data.Tests
 {
     [TestClass()]
     public class XmlStudentDaoTests
     {
-        private const string FileName = "students.xml";
-        
+        private readonly static string FileName = ConfigurationManager.AppSettings["xml"].ToString();
+
         [TestInitialize]
         public void Setup()
         {

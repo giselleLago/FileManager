@@ -2,16 +2,18 @@
 using log4net;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+
 
 namespace FileManager.DataAccess.Data
 {
     public class XmlStudentDao : IStudentDao
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof(XmlStudentDao));
-        private const string FileName = "students.xml";
+        private readonly string FileName = ConfigurationManager.AppSettings["xml"].ToString();
         public List<Student> GetAll()
         {
             if (File.Exists(FileName))

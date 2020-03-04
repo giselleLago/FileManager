@@ -2,6 +2,6 @@
 {
     public interface IAbstractFactory
     {
-          object Create();
+        IStudentDao Create(DataFormat format);
     }
 }

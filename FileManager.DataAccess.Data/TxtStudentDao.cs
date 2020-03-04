@@ -1,6 +1,7 @@
 ﻿using FileManager.Common.Layer;
 using log4net;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 
@@ -9,7 +10,7 @@ namespace FileManager.DataAccess.Data
     public class TxtStudentDao : IStudentDao
     {
         private static readonly ILog logger = LogManager.GetLogger(typeof(TxtStudentDao));
-        private const string FileName = "students.txt";
+        private readonly string FileName = ConfigurationManager.AppSettings["txt"].ToString();
         public List<Student> GetAll()
         {
             if (File.Exists(FileName))
