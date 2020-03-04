@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess Integration Test
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business Tier", "Business Tier", "{9B508F34-7499-4D8B-9203-94F33A713DBE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileManager.Business", "FileManager.Business\FileManager.Business.csproj", "{CCED810B-87B2-4983-BB16-0D3AAE97A325}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{AEDED860-B171-4ABD-B02A-D6AB89186DA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEDED860-B171-4ABD-B02A-D6AB89186DA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AEDED860-B171-4ABD-B02A-D6AB89186DA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCED810B-87B2-4983-BB16-0D3AAE97A325}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCED810B-87B2-4983-BB16-0D3AAE97A325}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCED810B-87B2-4983-BB16-0D3AAE97A325}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCED810B-87B2-4983-BB16-0D3AAE97A325}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +58,7 @@ Global
 		{A52013EF-0B0C-431C-9FFC-18D435E83A15} = {B1EDDB52-815A-40FC-99F1-A9A5B6B4EDE5}
 		{AD66BC42-C31C-4B9B-B7BF-A7CF3779C804} = {3F78E130-452B-4A02-9044-D315CDA514E9}
 		{AEDED860-B171-4ABD-B02A-D6AB89186DA6} = {9EFF1759-93F4-455C-82FD-31C5F5AFFDAC}
+		{CCED810B-87B2-4983-BB16-0D3AAE97A325} = {9B508F34-7499-4D8B-9203-94F33A713DBE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {737064EE-9C11-4442-B2AD-0AE1700F5628}
