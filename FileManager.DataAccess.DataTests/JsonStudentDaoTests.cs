@@ -1,4 +1,5 @@
 ﻿using FileManager.Common.Layer;
+using FileManager.Common.Layer.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 

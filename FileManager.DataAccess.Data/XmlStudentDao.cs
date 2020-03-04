@@ -1,6 +1,6 @@
-﻿using FileManager.Common.Layer;
+﻿using FileManager.Common.Layer.Entities;
+using FileManager.Common.Layer.Exceptions;
 using log4net;
-using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;

@@ -1,4 +1,4 @@
-﻿using FileManager.Common.Layer;
+﻿using FileManager.Common.Layer.Entities;
 using System.Collections.Generic;
 
 namespace FileManager.DataAccess.Data

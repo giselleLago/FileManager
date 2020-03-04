@@ -1,4 +1,4 @@
-﻿namespace FileManager.Common.Layer
+﻿namespace FileManager.Common.Layer.Entities
 {
     public class Student
     {

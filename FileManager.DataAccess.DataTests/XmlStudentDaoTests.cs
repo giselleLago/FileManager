@@ -2,6 +2,7 @@
 using System.IO;
 using FileManager.Common.Layer;
 using System.Configuration;
+using FileManager.Common.Layer.Entities;
 
 namespace FileManager.DataAccess.Data.Tests
 {
