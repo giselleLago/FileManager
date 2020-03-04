@@ -1,4 +1,4 @@
-﻿namespace FileManager.DataAccess.Data
+﻿namespace FileManager.DataAccess.Data.Services
 {
     public interface IAbstractFactory
     {

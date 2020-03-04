@@ -1,38 +1,35 @@
-﻿using FileManager.Common.Layer;
-using FileManager.Common.Layer.Entities;
+﻿using FileManager.Common.Layer.Entities;
 using FileManager.Common.Layer.Exceptions;
 using log4net;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Xml.Serialization;
 
-namespace FileManager.DataAccess.Data
+
+namespace FileManager.DataAccess.Data.Services
 {
-    public class JsonStudentDao : IStudentDao
+    public class XmlStudentDao : IStudentDao
     {
-        private static readonly ILog logger = LogManager.GetLogger(typeof(JsonStudentDao));
-        private readonly string FileName = ConfigurationManager.AppSettings["json"].ToString();
+        private static readonly ILog logger = LogManager.GetLogger(typeof(XmlStudentDao));
+        private readonly string FileName = ConfigurationManager.AppSettings["xml"].ToString();
         public List<Student> GetAll()
         {
             if (File.Exists(FileName))
             {
-                var readText = File.ReadAllText(FileName);
-                var studentList = JsonConvert.DeserializeObject<List<Student>>(readText);
-                return studentList;
+                return DeserializeObject();
             }
+
             logger.Info("The file dosen't exist. Return empty list.");
-            return new List<Student>();
+            return new List<Student>();  
         }
 
         public Student Create(Student student)
         {
             var studentList = GetAll();
             studentList.Add(student);
-            var json = JsonConvert.SerializeObject(studentList);
-            File.WriteAllText(FileName, json);
+            SerializeObject(studentList);
             return student;
         }
 
@@ -48,8 +45,7 @@ namespace FileManager.DataAccess.Data
             student.Name = studentUpdate.Name;
             student.LastName = studentUpdate.LastName;
             student.Age = studentUpdate.Age;
-            var json = JsonConvert.SerializeObject(studentList);
-            File.WriteAllText(FileName, json);
+            SerializeObject(studentList);
             return studentUpdate;
         }
 
@@ -63,8 +59,23 @@ namespace FileManager.DataAccess.Data
                 throw new StudentNotFoundException();
             }
             studentList.Remove(student);
-            var json = JsonConvert.SerializeObject(studentList);
-            File.WriteAllText(FileName, json); 
+            SerializeObject(studentList);
+        }
+
+        private void SerializeObject(List<Student> studentList)
+        {
+            var serializer = new XmlSerializer(studentList.GetType());
+            using (var writer = new StreamWriter(FileName))
+            {
+                serializer.Serialize(writer, studentList);
+            }
+        }
+
+        private List<Student> DeserializeObject()
+        {
+            var xml = File.ReadAllText(FileName);
+            var serializer = new XmlSerializer(typeof(List<Student>));
+            return (List<Student>)serializer.Deserialize(new StringReader(xml));
         }
     }
 }

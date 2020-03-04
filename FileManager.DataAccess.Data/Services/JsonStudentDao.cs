@@ -1,22 +1,27 @@
-﻿using FileManager.Common.Layer.Entities;
+﻿using FileManager.Common.Layer;
+using FileManager.Common.Layer.Entities;
 using FileManager.Common.Layer.Exceptions;
 using log4net;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
 
-namespace FileManager.DataAccess.Data
+namespace FileManager.DataAccess.Data.Services
 {
-    public class TxtStudentDao : IStudentDao
+    public class JsonStudentDao : IStudentDao
     {
-        private static readonly ILog logger = LogManager.GetLogger(typeof(TxtStudentDao));
-        private readonly string FileName = ConfigurationManager.AppSettings["txt"].ToString();
+        private static readonly ILog logger = LogManager.GetLogger(typeof(JsonStudentDao));
+        private readonly string FileName = ConfigurationManager.AppSettings["json"].ToString();
         public List<Student> GetAll()
         {
             if (File.Exists(FileName))
             {
-                return DeserializeObject();
+                var readText = File.ReadAllText(FileName);
+                var studentList = JsonConvert.DeserializeObject<List<Student>>(readText);
+                return studentList;
             }
             logger.Info("The file dosen't exist. Return empty list.");
             return new List<Student>();
@@ -26,7 +31,8 @@ namespace FileManager.DataAccess.Data
         {
             var studentList = GetAll();
             studentList.Add(student);
-            SerializeObject(studentList);
+            var json = JsonConvert.SerializeObject(studentList);
+            File.WriteAllText(FileName, json);
             return student;
         }
 
@@ -42,7 +48,8 @@ namespace FileManager.DataAccess.Data
             student.Name = studentUpdate.Name;
             student.LastName = studentUpdate.LastName;
             student.Age = studentUpdate.Age;
-            SerializeObject(studentList);
+            var json = JsonConvert.SerializeObject(studentList);
+            File.WriteAllText(FileName, json);
             return studentUpdate;
         }
 
@@ -56,37 +63,8 @@ namespace FileManager.DataAccess.Data
                 throw new StudentNotFoundException();
             }
             studentList.Remove(student);
-            SerializeObject(studentList);
-        }
-
-        private void SerializeObject(List<Student> studentList)
-        {
-            using (var tw = new StreamWriter(FileName))
-            {
-                foreach (var item in studentList)
-                {
-                    tw.WriteLine(string.Format("{0},{1},{2},{3}", item.Id, item.Name, item.LastName, item.Age));
-                }
-            }
-        }
-        private List<Student> DeserializeObject()
-        {
-            var studentList = new List<Student>();
-            var logFile = File.ReadLines(FileName).ToList();
-            for (int i = 0; i < logFile.Count; i++)
-            {
-                var line = logFile.ElementAt(i);
-                var data = line.Split(',');
-                var student = new Student
-                {
-                    Id = int.Parse(data[0]),
-                    Name = data[1],
-                    LastName = data[2],
-                    Age = int.Parse(data[3])
-                };
-                studentList.Add(student);
-            }
-            return studentList;
+            var json = JsonConvert.SerializeObject(studentList);
+            File.WriteAllText(FileName, json); 
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
-using FileManager.Common.Layer;
 using System.Configuration;
 using FileManager.Common.Layer.Entities;
+using FileManager.DataAccess.Data.Services;
 
 namespace FileManager.DataAccess.Data.Tests
 {

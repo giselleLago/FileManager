@@ -1,6 +1,5 @@
-﻿using FileManager.Common.Layer;
-using FileManager.Common.Layer.Entities;
-using FileManager.DataAccess.Data;
+﻿using FileManager.Common.Layer.Entities;
+using FileManager.DataAccess.Data.Services;
 using log4net;
 using System;
 using System.Windows.Forms;

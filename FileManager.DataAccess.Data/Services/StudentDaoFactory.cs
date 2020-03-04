@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Xml.Linq;
 
-namespace FileManager.DataAccess.Data
+namespace FileManager.DataAccess.Data.Services
 {
     public class StudentDaoFactory : IAbstractFactory
     {

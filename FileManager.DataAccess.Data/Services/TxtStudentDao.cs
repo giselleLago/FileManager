@@ -5,24 +5,21 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
-using System.Xml.Serialization;
 
-
-namespace FileManager.DataAccess.Data
+namespace FileManager.DataAccess.Data.Services
 {
-    public class XmlStudentDao : IStudentDao
+    public class TxtStudentDao : IStudentDao
     {
-        private static readonly ILog logger = LogManager.GetLogger(typeof(XmlStudentDao));
-        private readonly string FileName = ConfigurationManager.AppSettings["xml"].ToString();
+        private static readonly ILog logger = LogManager.GetLogger(typeof(TxtStudentDao));
+        private readonly string FileName = ConfigurationManager.AppSettings["txt"].ToString();
         public List<Student> GetAll()
         {
             if (File.Exists(FileName))
             {
                 return DeserializeObject();
             }
-
             logger.Info("The file dosen't exist. Return empty list.");
-            return new List<Student>();  
+            return new List<Student>();
         }
 
         public Student Create(Student student)
@@ -64,18 +61,32 @@ namespace FileManager.DataAccess.Data
 
         private void SerializeObject(List<Student> studentList)
         {
-            var serializer = new XmlSerializer(studentList.GetType());
-            using (var writer = new StreamWriter(FileName))
+            using (var tw = new StreamWriter(FileName))
             {
-                serializer.Serialize(writer, studentList);
+                foreach (var item in studentList)
+                {
+                    tw.WriteLine(string.Format("{0},{1},{2},{3}", item.Id, item.Name, item.LastName, item.Age));
+                }
             }
         }
-
         private List<Student> DeserializeObject()
         {
-            var xml = File.ReadAllText(FileName);
-            var serializer = new XmlSerializer(typeof(List<Student>));
-            return (List<Student>)serializer.Deserialize(new StringReader(xml));
+            var studentList = new List<Student>();
+            var logFile = File.ReadLines(FileName).ToList();
+            for (int i = 0; i < logFile.Count; i++)
+            {
+                var line = logFile.ElementAt(i);
+                var data = line.Split(',');
+                var student = new Student
+                {
+                    Id = int.Parse(data[0]),
+                    Name = data[1],
+                    LastName = data[2],
+                    Age = int.Parse(data[3])
+                };
+                studentList.Add(student);
+            }
+            return studentList;
         }
     }
 }
