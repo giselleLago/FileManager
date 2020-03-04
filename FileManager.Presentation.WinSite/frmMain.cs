@@ -22,13 +22,14 @@ namespace FileManager.Presentation.WinSite
 
         private void cbxDataFormat_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var studentDaoFactory = new StudentDaoFactory();
             if (cbxDataFormat.SelectedIndex == 0)
             {
-                studentDao = StudentDaoFactory.Create(DataFormat.JSON);
+                studentDao = studentDaoFactory.Create(DataFormat.JSON);
             }
             else
             {
-                studentDao = StudentDaoFactory.Create(DataFormat.XML);
+                studentDao = studentDaoFactory.Create(DataFormat.XML);
             }
             RefreshStudentList();
         }
