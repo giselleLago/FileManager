@@ -98,7 +98,13 @@ namespace FileManager.Presentation.WinSite
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            var item = lvwStudents.SelectedItems[0];
+            var dialogResult = MessageBox.Show("Are you sure you want delete?", "Delete", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                studentService.Delete(int.Parse(item.SubItems[0].Text));
+                item.Remove();
+            }
         }
     }
 }
