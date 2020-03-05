@@ -7,7 +7,7 @@ namespace FileManager.DataAccess.Data.Services
     {
         List<Student> GetAll();
         Student Create(Student student);
-        Student Update(Student studentUpdate);
-        void Delete(Student studentDelete);
+        Student Update(Student student);
+        void Delete(int studentId);
     }
 }

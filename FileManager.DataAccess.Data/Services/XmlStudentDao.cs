@@ -33,26 +33,26 @@ namespace FileManager.DataAccess.Data.Services
             return student;
         }
 
-        public Student Update(Student studentUpdate)
+        public Student Update(Student student)
         {
             var studentList = GetAll();
-            var student = studentList.FirstOrDefault(x => x.Id == studentUpdate.Id);
-            if (student == null)
+            var oldStudent = studentList.FirstOrDefault(x => x.Id == student.Id);
+            if (oldStudent == null)
             {
                 logger.Warn("Student not found.");
                 throw new StudentNotFoundException();
             }
-            student.Name = studentUpdate.Name;
-            student.LastName = studentUpdate.LastName;
-            student.Age = studentUpdate.Age;
+            oldStudent.Name = student.Name;
+            oldStudent.LastName = student.LastName;
+            oldStudent.Age = student.Age;
             SerializeObject(studentList);
-            return studentUpdate;
+            return student;
         }
 
-        public void Delete(Student studentDelete)
+        public void Delete(int studentId)
         {
             var studentList = GetAll();
-            var student = studentList.FirstOrDefault(x => x.Id == studentDelete.Id);
+            var student = studentList.FirstOrDefault(x => x.Id == studentId);
             if (student == null)
             {
                 logger.Warn("Student not found.");
