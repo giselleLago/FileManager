@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Types>
     <Type Id="TXT">
-        <class>FileManager.DataAccess.Data.TxtStudentDao</class>
+        <class>FileManager.DataAccess.Data.Services.TxtStudentDao</class>
     </Type>
     <Type Id="JSON">
-        <class>FileManager.DataAccess.Data.JsonStudentDao</class>
+        <class>FileManager.DataAccess.Data.Services.JsonStudentDao</class>
     </Type>
     <Type Id="XML">
-        <class>FileManager.DataAccess.Data.XmlStudentDao</class>
+        <class>FileManager.DataAccess.Data.Services.XmlStudentDao</class>
     </Type>
 </Types>

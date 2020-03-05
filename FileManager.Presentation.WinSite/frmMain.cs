@@ -14,6 +14,7 @@ namespace FileManager.Presentation.WinSite
         public frmMain()
         {
             InitializeComponent();
+            studentService = new StudentService();
         }
 
         private void frmMain_Load(object sender, EventArgs e)

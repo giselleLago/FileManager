@@ -25,7 +25,7 @@ namespace FileManager.DataAccess.Data.Services
             
             var typeName = element.Element("class").Value;
             var assembly = Assembly.GetExecutingAssembly();
-            Type daoType = assembly.GetType(typeName);
+            var daoType = assembly.GetType(typeName);
             return Activator.CreateInstance(daoType) as IStudentDao;
         }
     }
