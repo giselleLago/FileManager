@@ -38,10 +38,9 @@ namespace FileManager.Business.Services
             return ToStudentDto(result);
         }
 
-        public void Delete(StudentDto student)
+        public void Delete(int studentId)
         {
-            var entity = ToStudent(student);
-            _studentDao.Delete(entity);
+            _studentDao.Delete(studentId);
         }
 
         public List<StudentDto> GetAll()

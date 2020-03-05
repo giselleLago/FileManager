@@ -10,6 +10,6 @@ namespace FileManager.Business.Services
         List<StudentDto> GetAll();
         StudentDto Create(StudentDto student);
         StudentDto Update(StudentDto student);
-        void Delete(StudentDto student);
+        void Delete(int studentId);
     }
 }

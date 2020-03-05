@@ -1,4 +1,5 @@
-﻿using FileManager.Business.Services;
+﻿using FileManager.Business.DTOs;
+using FileManager.Business.Services;
 using FileManager.Common.Layer;
 using log4net;
 using System;
@@ -63,6 +64,41 @@ namespace FileManager.Presentation.WinSite
         {
             var studentForm = new frmStudent(studentService, this);
             studentForm.ShowDialog();
+        }
+
+        private void cmsList_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (lvwStudents.SelectedItems.Count == 0)
+            {
+                updateToolStripMenuItem.Enabled = false;
+                deleteToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                updateToolStripMenuItem.Enabled = true;
+                deleteToolStripMenuItem.Enabled = true;
+            }
+        }
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var item = lvwStudents.SelectedItems[0];
+            var student = new StudentDto
+            {
+                Id = int.Parse(item.SubItems[0].Text),
+                Name = item.SubItems[1].Text,
+                LastName = item.SubItems[2].Text,
+                Age = int.Parse(item.SubItems[3].Text)
+            };
+            
+            var studentForm = new frmStudent(studentService, this, student);
+            studentForm.ShowDialog();
+
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

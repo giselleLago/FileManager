@@ -147,6 +147,7 @@ namespace FileManager.Presentation.WinSite
             this.Name = "frmStudent";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Student";
+            this.Load += new System.EventHandler(this.frmStudent_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
