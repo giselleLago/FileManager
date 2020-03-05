@@ -28,9 +28,13 @@ namespace FileManager.Presentation.WinSite
             {
                 studentService.DataFormat = DataFormat.JSON;
             }
-            else
+            else if (cbxDataFormat.SelectedIndex == 1)
             {
                 studentService.DataFormat = DataFormat.XML;
+            }
+            else
+            {
+                studentService.DataFormat = DataFormat.TXT;
             }
             RefreshStudentList();
         }

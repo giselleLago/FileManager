@@ -85,7 +85,8 @@
             this.cbxDataFormat.FormattingEnabled = true;
             this.cbxDataFormat.Items.AddRange(new object[] {
             "JSON",
-            "XML"});
+            "XML",
+            "TXT"});
             this.cbxDataFormat.Location = new System.Drawing.Point(633, 12);
             this.cbxDataFormat.Name = "cbxDataFormat";
             this.cbxDataFormat.Size = new System.Drawing.Size(155, 21);

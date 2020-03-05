@@ -5,6 +5,7 @@ namespace FileManager.Common.Layer
     public enum DataFormat
     {
         JSON = 0,
-        XML = 1
+        XML = 1,
+        TXT = 2
     }
 }
